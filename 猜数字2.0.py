@@ -4,7 +4,9 @@ def guess_number_game():
     print("=" * 50)
     print("        欢迎来到猜数字游戏!")
     print("=" * 50)
-    print("系统会随机生成一个1-100之间的整数")
+    print("系统会随机生成一个整数")
+    min_num = int(input("请输入范围最小值"))
+    max_num = int(input("请输入范围最大值"))
     print("你需要猜出这个数字是多少")
     print("-" * 50)
     
@@ -13,7 +15,7 @@ def guess_number_game():
     best_score = float('inf')
     
     while True:
-        secret_number = random.randint(1, 100)
+        secret_number = random.randint(min_num,max_num)
         guess_count = 0
         total_games += 1
         
@@ -22,7 +24,7 @@ def guess_number_game():
         
         while True:
             try:
-                guess = input("\n请输入你的猜测 (1-100): ")
+                guess = input(f"\n请输入你的猜测 ({min_num}-{max_num}): ")
                 
                 if guess.lower() == 'q':
                     print("\n感谢游玩！再见！")
@@ -30,8 +32,8 @@ def guess_number_game():
                 
                 guess = int(guess)
                 
-                if guess < 1 or guess > 100:
-                    print("请输入1-100之间的整数！")
+                if guess < min_num or guess > max_num:
+                    print("请输入范围之间的整数！")
                     continue
                 
                 guess_count += 1
