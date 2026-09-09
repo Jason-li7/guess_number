@@ -1,3 +1,12 @@
+"""
+猜数字游戏 - 命令行版
+功能：
+1.用户可自定义数字范围
+2.记录总游戏轮数、平均猜测次数、最佳成绩
+3.支持随时输入'q'退出
+作者：Jason-li7
+创建日期：2026-09-08
+"""
 import random
 
 def guess_number_game():
@@ -7,6 +16,9 @@ def guess_number_game():
     print("系统会随机生成一个整数")
     min_num = int(input("请输入范围最小值"))
     max_num = int(input("请输入范围最大值"))
+    if min_num > max_num:
+        print("最小值不能大于最大值，请重新开始。")
+        return
     print("你需要猜出这个数字是多少")
     print("-" * 50)
     
