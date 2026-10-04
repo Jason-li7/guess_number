@@ -9,6 +9,7 @@
 更新日期：2026-09-24
 """
 import random
+import os
 
 def guess_number_game():
     print("=" * 50)
@@ -25,7 +26,14 @@ def guess_number_game():
     
     total_games = 0
     total_guesses = 0
-    best_score = float('inf')
+    record_file = "best_score.txt"
+    if os.path.exists(record_file):
+        with open(record_file,"r") as f:
+            best_score = int(f.read())
+        print(f"历史最佳成绩是：{best_score}次")
+    else:
+        best_score = float('inf')
+        print("暂无历史记录，快来创建你的第一个记录吧！")
     
     while True:
         secret_number = random.randint(min_num,max_num)
@@ -63,6 +71,8 @@ def guess_number_game():
                     if guess_count < best_score:
                         best_score = guess_count
                         print("🎉 新纪录！这是你最好的成绩！")
+                        with open(record_file,"w") as f:
+                            f.write(str(best_score))
                     break
                     
             except ValueError:
